@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    >
+
+    <RelativeLayout
+        android:id="@+id/success_layout"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:background="@drawable/custom_bordered_ripple">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/success" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="Tiếp tục"
+            android:textSize="16sp"
+            android:textColor="#363636"
+            />
+
+        <Button
+            android:id="@+id/next"
+            style="@style/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_shape"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Tiếp tục"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

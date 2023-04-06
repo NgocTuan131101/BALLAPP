@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".account.Team.MainActivityTeam">
+
+    <RelativeLayout
+        android:id="@+id/navigation_layout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <RelativeLayout
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/back_button_background"
+            android:elevation="8dp">
+
+            <RelativeLayout
+                android:id="@+id/back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_borderless_ripple">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/backicon" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Thông tin đội"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scroll_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/navigation_layout">
+
+        <RelativeLayout
+            android:id="@+id/navigation_layout_ScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/team_image_layout"
+                android:layout_width="290dp"
+                android:layout_height="180dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:elevation="12dp"
+                android:background="@drawable/custom_bordered_ripple"
+
+               >
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/team_image_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    app:cardCornerRadius="0dp">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/team_image"
+                                android:layout_width="280dp"
+                                android:layout_height="150dp"
+                                android:layout_centerInParent="true"
+                                android:background="@drawable/custom_bordered_ripple"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/avatar_items" />
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/icons8_add_camera_32"
+                                android:background="@drawable/custom_bordered_tron"
+                                android:layout_alignParentEnd="true"
+                                android:padding="10dp"
+                                android:layout_alignParentBottom="true"
+                                android:elevation="16dp"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/title_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/team_image_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Ảnh đại diện"
+                android:textColor="#000000"
+                android:textSize="14dp" />
+
+            <RelativeLayout
+                android:id="@id/title_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/title_image"
+                android:layout_marginTop="16dp"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/team_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Tên đội"
+                    android:textColor="#09101D"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edit_team_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/team_name"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittext_background_team"
+                    android:fontFamily="@font/inter_regular"
+                    android:hint="Nhập tên đội"
+                    android:inputType="text"
+                    android:paddingStart="20dp"
+                    android:textColor="#363636"
+                    android:textColorHint="#7A7A7A"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/team_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edit_team_name"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Sân"
+                    android:textColor="#09101D"
+                    android:textSize="16sp" />
+
+                <RelativeLayout
+                    android:id="@+id/location_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_below="@+id/team_location"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edittext_background_team">
+
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/edittext_background_team"
+                        android:fontFamily="@font/inter_regular"
+                        android:gravity="center_vertical"
+                        android:hint="Chọn sân"
+                        android:paddingStart="20dp"
+                        android:textColor="#363636"
+                        android:textColorHint="#7A7A7A"
+                        android:textSize="12sp"
+                        app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/people"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/location_layout"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Số người"
+                    android:textColor="#09101D" />
+
+                <RelativeLayout
+                    android:id="@+id/people_number_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_below="@+id/people"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edittext_background_team">
+
+                    <TextView
+                        android:id="@+id/people_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/edittext_background_team"
+                        android:fontFamily="@font/inter_regular"
+                        android:gravity="center_vertical"
+                        android:hint="Chọn số người"
+                        android:paddingStart="20dp"
+                        android:textColor="#363636"
+                        android:textColorHint="#7A7A7A"
+                        android:textSize="12sp"
+                        app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/note_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/people_number_layout"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Ghi chú"
+                    android:textColor="#09101D" />
+
+                <EditText
+                    android:id="@+id/note_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/note_"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_background_team"
+                    android:fontFamily="@font/inter_regular"
+                    android:inputType="text"
+                    android:paddingStart="20dp"
+                    android:textColor="#363636"
+                    android:textColorHint="#7A7A7A"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/save"
+                style="@style/Button"
+                android:layout_below="@id/title_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_shape"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Lưu thông tin" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

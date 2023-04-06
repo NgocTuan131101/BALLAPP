@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/colorPrimary" />
+
+    <RelativeLayout
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/back_button_background"
+            android:elevation="12dp">
+
+            <RelativeLayout
+                android:id="@+id/back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/backicon" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/inter_bold"
+            android:text="Thông Tin"
+            android:textColor="#363636"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_avatar_image"
+        android:layout_width="136dp"
+        android:layout_height="136dp"
+        android:layout_below="@id/title_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_bordered"
+        android:elevation="25dp"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="7dp"
+        android:src="@drawable/empty_avatar"
+        android:visibility="gone"
+
+        />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_avatar_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/user_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="#363636"
+        android:textSize="14sp"
+        android:visibility="gone"/>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="286dp"
+        android:layout_height="1dp"
+        android:layout_below="@id/user_phone_number"
+        android:layout_centerHorizontal="true"
+        android:background="#B1B1B1"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_line"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="40dp"
+        android:orientation="vertical"
+        android:weightSum="4"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/team_information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/custom_bordered_ripple">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_medium"
+                android:text="Chỉnh sửa thông tin đội"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/next_next" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_bordered_ripple">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_medium"
+                android:text="Lịch sử đá"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/next_next" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_bordered_ripple">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_medium"
+                android:text="Trợ giúp"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/next_next" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_bordered_ripple">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_medium"
+                android:text="Thông báo"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/next_next" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/sgin_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/custom_bordered_ripple">
+
+        <TextView
+            android:id="@+id/log_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_medium"
+            android:text="Đăng xuất"
+            android:textColor="#363636"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="4dp"
+            android:layout_toEndOf="@id/log_out"
+            android:src="@drawable/log_out" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/team_image_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="0dp">
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+               <ImageView
+                   android:layout_width="250dp"
+                   android:layout_height="140dp"
+                   android:src="@drawable/avatar_items"
+                   android:layout_centerInParent="true"/>
+               <ImageView
+                   android:layout_width="50dp"
+                   android:layout_height="50dp"
+                   android:src="@drawable/icons8_add_camera_32"
+                   android:background="@drawable/custom_bordered_tron"
+                   android:layout_alignParentEnd="true"
+                   android:layout_alignParentBottom="true"
+                   android:layout_marginBottom="20dp"
+                   android:layout_marginEnd="10dp"
+                   android:elevation="16dp"/>
+           </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+
+    </RelativeLayout>
+    
+
+</RelativeLayout>
