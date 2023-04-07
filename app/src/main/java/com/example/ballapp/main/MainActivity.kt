@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     private val userID = FirebaseAuth.getInstance().currentUser?.uid
     private var teamAvatarUrl: String? = null
     private var teamName: String? = null
-    lateinit var preferences: SharedPreferences
+//    lateinit var preferences: SharedPreferences
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(mainBinding.root)
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         firebaseMessaging.subscribeToTopic("requesMatch")
-        preferences = getSharedPreferences("SHARE_PREF",Context.MODE_PRIVATE)
+//        preferences = getSharedPreferences("SHARE_PREF",Context.MODE_PRIVATE)
         initEvents()
         updateUserObserve()
     }

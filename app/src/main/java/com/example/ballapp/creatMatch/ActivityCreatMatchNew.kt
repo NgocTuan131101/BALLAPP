@@ -96,8 +96,6 @@ class ActivityCreatMatchNew : AppCompatActivity() {
                 matchDate = currentDate.format(dateFormatter)
             }
             /*
-
-
             if (newcreatMatch.textLocation.equals("Sân Đại Học Khoa Học")) {
                 locationAddress = LocationAddress.khoaHocAddress
                 lat = LocationAddress.khoaHocLat
