@@ -36,14 +36,14 @@ class MainActivityLogin : AppCompatActivity() {
     //Cc cuoc goi lai da dang ky cho cac su kien xac thuc dien thoai khac nhau. (OnVerificationStateChangedCallbacks)
     private var userNumber: String? = null
     lateinit var storedVerificationId : String
-    lateinit var sharePreferences : SharedPreferences
+//    lateinit var sharePreferences : SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityLoginBinding = ActivityMainLoginBinding.inflate(layoutInflater)
         setContentView(ActivityLoginBinding.root)
-        sharePreferences = getSharedPreferences("SHARE_PREF",Context.MODE_PRIVATE)
+//        sharePreferences = getSharedPreferences("SHARE_PREF",Context.MODE_PRIVATE)
         init()
     }
 
@@ -91,11 +91,11 @@ class MainActivityLogin : AppCompatActivity() {
                   - suy nghĩ đưa EncryptedSharedPreferences vào
 
                 */
-                val editor : SharedPreferences.Editor = sharePreferences.edit()
+//                val editor : SharedPreferences.Editor = sharePreferences.edit()
                 val intent = Intent(applicationContext,MainActivitySignlnVerify::class.java)
                 intent.putExtra("storedVerificationId",storedVerificationId)
                 intent.putExtra("userPhoneNumber",userNumber)
-                editor.apply()
+//                editor.apply()
                 dialog.dismiss()
                 startActivity(intent)
                 Animation.animateSlideLeft(this@MainActivityLogin)
