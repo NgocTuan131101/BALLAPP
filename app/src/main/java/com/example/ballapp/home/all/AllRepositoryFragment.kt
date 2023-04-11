@@ -97,19 +97,20 @@ class AllRepositoryFragment @Inject constructor(private val firebaseDatabase: Fi
                 onFail(it.message.orEmpty())
             }
     }
+
     fun notHighLight(
         matchID: String,
         onSuccess: (String) -> Unit,
-        onFail: (String) -> Unit
-    ){
+        onFail: (String) -> Unit,
+    ) {
         val nothighlight = mapOf(
             "highlight" to 0
         )
         firebaseDatabase.getReference("Request_Match").child(matchID).updateChildren(nothighlight)
-            .addOnCompleteListener{
-                if(it.isSuccessful){
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
                     onSuccess(it.toString())
-                }else{
+                } else {
                     onFail(it.exception?.message.orEmpty())
                 }
             }

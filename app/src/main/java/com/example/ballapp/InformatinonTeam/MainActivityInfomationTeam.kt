@@ -76,6 +76,7 @@ class MainActivityInfomationTeam : AppCompatActivity() {
                     Toast.makeText(this, "Thay đổi thông tin thành công", Toast.LENGTH_SHORT).show()
                 }
                 is TeamInformationViewModel.SaveTeams.ResultError -> {}
+                else -> {}
             }
         }
     }
@@ -102,7 +103,7 @@ class MainActivityInfomationTeam : AppCompatActivity() {
                     val handle = Handler()
                     handle.postDelayed({
                         dialog.cancel()
-                    }, 5000)
+                    }, 50000)
                 }
                 is TeamInformationViewModel.SaveTeamsImage.ResultError -> {
                     Toast.makeText(this, resutl.errorMessage, Toast.LENGTH_SHORT).show()
@@ -132,6 +133,7 @@ class MainActivityInfomationTeam : AppCompatActivity() {
                         .into(activityMainInfomationTeamBinding.teamImage)
                 }
                 is TeamInformationViewModel.LoadTeamInfo.LoadInfoError -> {}
+                else -> {}
             }
         }
     }

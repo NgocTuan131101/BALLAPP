@@ -137,6 +137,5 @@ class CreatMatchRepository @Inject constructor(
             .addOnFailureListener {
                 onFail(it.message.orEmpty())
             }
-
     }
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
 <!--    <ProgressBar-->
-<!--       android:id="@+id/progress_bar"-->
+<!--        android:id="@+id/progress_bar"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
 <!--        android:layout_centerInParent="true" />-->
@@ -73,19 +73,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_centerHorizontal="true"
-                android:elevation="16dp"
+
                 android:background="@drawable/custom_bordered_ripple">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="340dp"
+                    android:layout_height="180dp"
+                    android:layout_centerInParent="true"
                     app:cardCornerRadius="28dp">
 
                     <ImageView
                         android:id="@+id/team_iagme"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/white"
                         android:src="@drawable/baseline_add_photo_alternate_24" />
 
                 </androidx.cardview.widget.CardView>
@@ -97,7 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/team_iagme_layout"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:id="@+id/location"

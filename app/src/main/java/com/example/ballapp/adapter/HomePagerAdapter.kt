@@ -28,7 +28,7 @@ class HomePagerAdapter  @Inject constructor(fm : FragmentManager, lifecycle: Lif
                     TodayFragmentMainActivity()
                 }
                 3 ->{
-                    TomorrowFragmentMainActivity()
+                    NewCreateFragment()
                 }
 
                 else -> {

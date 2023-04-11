@@ -85,7 +85,7 @@ class AllFragmentMainActivity : Fragment() {
                 }
             }
             is AllViewModelFragment.LoadAllList.ResultError -> {
-                Toast.makeText(context,result.errerMessage,Toast.LENGTH_SHORT)
+                Toast.makeText(context,result.errerMessage,Toast.LENGTH_SHORT).show()
             }
         }
     }

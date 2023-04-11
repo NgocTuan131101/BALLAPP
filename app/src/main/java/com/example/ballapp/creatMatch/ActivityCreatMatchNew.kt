@@ -95,7 +95,6 @@ class ActivityCreatMatchNew : AppCompatActivity() {
                 val dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH)
                 matchDate = currentDate.format(dateFormatter)
             }
-            /*
             if (newcreatMatch.textLocation.equals("Sân Đại Học Khoa Học")) {
                 locationAddress = LocationAddress.khoaHocAddress
                 lat = LocationAddress.khoaHocLat
@@ -151,13 +150,12 @@ class ActivityCreatMatchNew : AppCompatActivity() {
                 long = LocationAddress.xuanPhuLong
                 geoHash = LocationAddress.xuanPhuHash
             }
-*/
             val dialog = Dialog(this, R.style.MyTimePickerTheme)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             createMatchNewDialogBinding = CreateMatchNewDialogBinding.inflate(layoutInflater)
             dialog.setCancelable(false)
-            dialog.setContentView(createMatchNewDialogBinding.root)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.setContentView(createMatchNewDialogBinding.root)
             createMatchNewDialogBinding.date.text = matchDate
             createMatchNewDialogBinding.time.text = newcreatMatch.time.text
             createMatchNewDialogBinding.yes.setOnClickListener {

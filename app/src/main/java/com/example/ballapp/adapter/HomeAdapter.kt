@@ -57,7 +57,6 @@ class HomeAdapter @Inject constructor(private var requestList: ArrayList<CreateM
             }
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val items = ItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
        return MyViewHolder(items,listerner)

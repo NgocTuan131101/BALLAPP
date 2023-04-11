@@ -121,7 +121,6 @@ class MainActivityUser : AppCompatActivity() {
             dialog.dismiss()
         }
         dialog.show()
-
     }
 
     private fun saveAvatarObserve() {
@@ -232,7 +231,6 @@ class MainActivityUser : AppCompatActivity() {
             val path = MediaStore.Images.Media.insertImage(this.contentResolver,photo,"Title",null)
             imgUri = Uri.parse(path)
             mainActivityUserBinding.userAvatarImage.setImageURI(imgUri)
-
         }
         if(this::imgUri.isInitialized){
             if(userUID != null)

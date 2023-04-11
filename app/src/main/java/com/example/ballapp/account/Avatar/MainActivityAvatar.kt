@@ -118,14 +118,12 @@ class MainActivityAvatar : AppCompatActivity() {
             mainActivityAvatar.progressPicture.setImageURI(imgUri)
         }
     }
-
     private fun selectAvatarFromgallery() {
         val intent = Intent()
         intent.type = "*image/*"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(intent, 0)
     }
-
     @SuppressLint("QueryPermissionsNeeded")
     private fun selectAvatarFromCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
