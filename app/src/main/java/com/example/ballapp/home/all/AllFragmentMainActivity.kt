@@ -21,36 +21,36 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AllFragmentMainActivity : Fragment() {
     private lateinit var allFragmentAllBinding: FragmentAllBinding
-    private val allViewModelFragment : AllViewModelFragment by viewModels()
+    private val allViewModelFragment: AllViewModelFragment by viewModels()
     private lateinit var homeAdapter: HomeAdapter
     private val userUID = FirebaseAuth.getInstance().currentUser?.uid
 
-    override fun onViewCreated(view :View , savedInstanceState : Bundle? ) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initList()
         loadListObserve()
         highLightObserve()
-        if(userUID != null){
+        if (userUID != null) {
             allViewModelFragment.loadAll(userUID)
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
-        allFragmentAllBinding = FragmentAllBinding.inflate(inflater,container,false)
+        allFragmentAllBinding = FragmentAllBinding.inflate(inflater, container, false)
         return allFragmentAllBinding.root
     }
-
     /*
         hàm highLightObserve() này chịu trách nhiệm xử lý các sự kiện được gửi từ ViewModel allViewModelFragment
         thông qua LiveData object highLight. Việc xử lý sự kiện cụ thể được thực hiện
         trong khối mã của từng trường hợp trong hàm when().
     */
     private fun highLightObserve() {
-        allViewModelFragment.highLight.observe(viewLifecycleOwner){result ->
-            when(result) {
+        allViewModelFragment.highLight.observe(viewLifecycleOwner) { result ->
+            when (result) {
                 is AllViewModelFragment.HighLighResult.NotHighligeOk -> {}
                 is AllViewModelFragment.HighLighResult.NotHighligeErorr -> {}
                 is AllViewModelFragment.HighLighResult.HighligeErorr -> {}
@@ -65,41 +65,43 @@ class AllFragmentMainActivity : Fragment() {
            mã của từng trường hợp trong hàm when().
     */
     private fun loadListObserve() {
-    allViewModelFragment.loadALLlist.observe(viewLifecycleOwner){result ->
-        with(allFragmentAllBinding){
-            progressBar.visibility = View.GONE
-            recyclerView.visibility = View.VISIBLE
-        }
-        when(result){
-
-            is AllViewModelFragment.LoadAllList.Loading ->{
-                allFragmentAllBinding.progressBar.visibility = View.VISIBLE
+        allViewModelFragment.loadALLlist.observe(viewLifecycleOwner) { result ->
+            with(allFragmentAllBinding) {
+                progressBar.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
             }
-            is AllViewModelFragment.LoadAllList.ResultOK ->{
-                if(result.list.isEmpty()){
-                    allFragmentAllBinding.recyclerView.visibility = View.GONE
-                    allFragmentAllBinding.imageLayout.visibility = View.VISIBLE
-                    allFragmentAllBinding.progressBar.visibility = View.GONE
-                }else{
-                    homeAdapter.addNewData(result.list)
+            when (result) {
+
+                is AllViewModelFragment.LoadAllList.Loading -> {
+                    allFragmentAllBinding.progressBar.visibility = View.VISIBLE
+                }
+                is AllViewModelFragment.LoadAllList.ResultOK -> {
+                    if (result.list.isEmpty()) {
+                        allFragmentAllBinding.recyclerView.visibility = View.GONE
+                        allFragmentAllBinding.imageLayout.visibility = View.VISIBLE
+                        allFragmentAllBinding.progressBar.visibility = View.GONE
+                    } else {
+                        homeAdapter.addNewData(result.list)
+                    }
+                }
+                is AllViewModelFragment.LoadAllList.ResultError -> {
+                    Toast.makeText(context, result.errerMessage, Toast.LENGTH_SHORT).show()
                 }
             }
-            is AllViewModelFragment.LoadAllList.ResultError -> {
-                Toast.makeText(context,result.errerMessage,Toast.LENGTH_SHORT).show()
-            }
         }
     }
-
-    }
     private fun initList() {
-        allFragmentAllBinding.recyclerView.apply{
+        allFragmentAllBinding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             homeAdapter = HomeAdapter(arrayListOf())
             adapter = homeAdapter
-            homeAdapter.setOnItemClickListerner(object : OnItemClickListerner{
+            homeAdapter.setOnItemClickListerner(object : OnItemClickListerner {
                 override fun onItemClick(requestData: CreateMatchModel) {
-                    MainActivityAllDetails.startDetails(context,requestData)
-                    activity?.overridePendingTransition(R.anim.animate_slide_left_enter,R.anim.animate_slide_left_exit)
+                    MainActivityAllDetails.startDetails(context, requestData)
+                    activity?.overridePendingTransition(
+                        R.anim.animate_slide_left_enter,
+                        R.anim.animate_slide_left_exit
+                    )
                 }
             })
         }

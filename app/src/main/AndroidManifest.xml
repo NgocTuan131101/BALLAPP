@@ -42,7 +42,7 @@
             android:exported="false" />
         <activity
             android:name=".main.MainActivity"
-            android:exported="false" /> <!-- <activity -->
+            android:exported="false" />
         <activity
             android:name=".account.Avatar.MainActivityAvatar"
             android:exported="false" />

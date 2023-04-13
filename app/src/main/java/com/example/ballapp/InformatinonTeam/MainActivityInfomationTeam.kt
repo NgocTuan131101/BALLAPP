@@ -76,7 +76,6 @@ class MainActivityInfomationTeam : AppCompatActivity() {
                     Toast.makeText(this, "Thay đổi thông tin thành công", Toast.LENGTH_SHORT).show()
                 }
                 is TeamInformationViewModel.SaveTeams.ResultError -> {}
-                else -> {}
             }
         }
     }
@@ -123,7 +122,7 @@ class MainActivityInfomationTeam : AppCompatActivity() {
                     activityMainInfomationTeamBinding.progressBar.visibility = View.VISIBLE
                 }
                 is TeamInformationViewModel.LoadTeamInfo.LoadInfoOk -> {
-                    activityMainInfomationTeamBinding.teamName.setText(result.teamName)
+                    activityMainInfomationTeamBinding.editTeamName.setText(result.teamName)
                     activityMainInfomationTeamBinding.location.text = result.teamLocation
                     activityMainInfomationTeamBinding.peopleNumber.text = result.teamPeopleNumber
                     activityMainInfomationTeamBinding.note.setText(result.teamNote)
@@ -133,7 +132,6 @@ class MainActivityInfomationTeam : AppCompatActivity() {
                         .into(activityMainInfomationTeamBinding.teamImage)
                 }
                 is TeamInformationViewModel.LoadTeamInfo.LoadInfoError -> {}
-                else -> {}
             }
         }
     }
@@ -146,24 +144,26 @@ class MainActivityInfomationTeam : AppCompatActivity() {
         loadingDialog.setContentView(loadingDialogBinding.root)
         loadingDialog.setCancelable(false)
         loadingDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        if (activityMainInfomationTeamBinding.teamName.text.isEmpty()) {
-            Toast.makeText(this, "Vui lòng nhập tên đội", Toast.LENGTH_SHORT).show()
-        } else {
-            loadingDialog.show()
-            if (this::imgUri.isInitialized) {
-                if (userUID != null) {
-                    teamInformationViewModel.saveTeamImage(imgUri, userUID)
+        activityMainInfomationTeamBinding.save.setOnClickListener {
+            if (activityMainInfomationTeamBinding.editTeamName.text.isEmpty()) {
+                Toast.makeText(this, "Vui lòng nhập tên đội", Toast.LENGTH_SHORT).show()
+            } else {
+                loadingDialog.show()
+                if (this::imgUri.isInitialized) {
+                    if (userUID != null) {
+                        teamInformationViewModel.saveTeamImage(imgUri, userUID)
+                    }
                 }
-            }
-            if (userUID != null) {
-                teamInformationViewModel.saveTeams(
-                    userUID,
-                    activityMainInfomationTeamBinding.teamName.text.toString(),
-                    activityMainInfomationTeamBinding.location.text.toString(),
-                    activityMainInfomationTeamBinding.peopleNumber.text.toString(),
-                    activityMainInfomationTeamBinding.note.text.toString(),
-                    deviceToken!!
-                )
+                if (userUID != null) {
+                    teamInformationViewModel.saveTeams(
+                        userUID,
+                        activityMainInfomationTeamBinding.editTeamName.text.toString(),
+                        activityMainInfomationTeamBinding.location.text.toString(),
+                        activityMainInfomationTeamBinding.peopleNumber.text.toString(),
+                        activityMainInfomationTeamBinding.note.text.toString(),
+                        deviceToken!!
+                    )
+                }
             }
         }
     }
@@ -206,7 +206,6 @@ class MainActivityInfomationTeam : AppCompatActivity() {
             }
         }
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 0 && resultCode == RESULT_OK) {
