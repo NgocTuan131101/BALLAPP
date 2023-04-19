@@ -30,21 +30,19 @@ class AllRepositoryFragment @Inject constructor(private val firebaseDatabase: Fi
                     if (snapshot.exists()) {
                         val listRequest = ArrayList<CreateMatchModel>()
                         for (requestSnapshot in snapshot.children) {
-//                            val childName = requestSnapshot.key.toString()
+                            val childName = requestSnapshot.key.toString()
                             // lấy giá trị của nó dưới dạng 1 đối tượng CreateMatchModel
                             // bằng phương thức getValue()
                             // kiểm tra xem giá giá trị đó có tồn tại không bằng cách sử dụng let()
                             requestSnapshot.getValue(CreateMatchModel::class.java)?.let { list ->
                                 val currentDate = LocalDate.now()
-//                                val currentTime = LocalTime.now()
+                                val currentTime = LocalTime.now()
                                 val matchDate = list.date
                                 val matchTime = list.time
-                                val dateFormatter =
-                                    DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH)
-                                val timeFormatter =
-                                    DateTimeFormatter.ofPattern("HH:mm", Locale.ENGLISH)
+                                val dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH)
+                                val timeFormatter = DateTimeFormatter.ofPattern("HH:mm", Locale.ENGLISH)
                                 val date = LocalDate.parse(matchDate, dateFormatter)
-//                                val time = LocalTime.parse(matchTime, timeFormatter)
+                                val time = LocalTime.parse(matchTime, timeFormatter)
                                 // Nếu giá trị CreateMatchModel tồn tại thì , hàm tt kiểm tra xem
                                 // người dùng có đang tham gia vào trận đấu nay không bằng cách
                                 // ss UserUID vs trường clientUID1 ,clientUID2, clientUID3 trong CreateMatchModel
@@ -63,7 +61,7 @@ class AllRepositoryFragment @Inject constructor(private val firebaseDatabase: Fi
                     // nếu listRequestr rỗng nó sẽ truyền dữ liệu vào hàm callback onSuccess
                     // nếu snapshot ko tt thì nó sẽ tạo ra 1 ds mới và hàm callback onSuccess
                     else {
-                        val listRequest = java.util.ArrayList<CreateMatchModel>()
+                        val listRequest = ArrayList<CreateMatchModel>()
                         onSuccess(listRequest)
                     }
                 }

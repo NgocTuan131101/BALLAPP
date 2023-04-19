@@ -78,5 +78,4 @@ class HomeAdapter @Inject constructor(private var requestList: ArrayList<CreateM
     override fun getItemCount(): Int {
         return requestList.size
     }
-
 }

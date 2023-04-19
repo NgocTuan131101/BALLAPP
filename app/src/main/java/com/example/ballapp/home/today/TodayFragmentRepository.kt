@@ -29,6 +29,7 @@ class TodayFragmentRepository @Inject constructor(private val firebaseDatabase: 
                         for (requestSnapshot in snapshot.children) {
                             requestSnapshot.getValue(CreateMatchModel::class.java)?.let { list ->
                                 val currentDate = LocalDate.now()
+                                val currentTime = LocalTime.now()
                                 val matchDate = list.date
                                 val matchTime = list.time
                                 val dataFormatter =
@@ -46,12 +47,12 @@ class TodayFragmentRepository @Inject constructor(private val firebaseDatabase: 
                                 }
                             }
                         }
+                        onSuccess(listRequest)
                     }else{
                         val listRequest = ArrayList<CreateMatchModel>()
                         onSuccess(listRequest)
                     }
                 }
-
                 override fun onCancelled(error: DatabaseError) {
                     onFail(error.message)
                 }

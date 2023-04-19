@@ -1,10 +1,10 @@
 package com.example.ballapp.home.all
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -16,6 +16,7 @@ import com.example.ballapp.home.all.AllDetailsActivity.MainActivityAllDetails
 import com.example.ballapp.`interface`.OnItemClickListerner
 import com.example.ballball.model.CreateMatchModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.logging.Log
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,12 +35,11 @@ class AllFragmentMainActivity : Fragment() {
             allViewModelFragment.loadAll(userUID)
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         allFragmentAllBinding = FragmentAllBinding.inflate(inflater, container, false)
         return allFragmentAllBinding.root
     }
@@ -77,6 +77,7 @@ class AllFragmentMainActivity : Fragment() {
                 }
                 is AllViewModelFragment.LoadAllList.ResultOK -> {
                     if (result.list.isEmpty()) {
+
                         allFragmentAllBinding.recyclerView.visibility = View.GONE
                         allFragmentAllBinding.imageLayout.visibility = View.VISIBLE
                         allFragmentAllBinding.progressBar.visibility = View.GONE
@@ -86,6 +87,7 @@ class AllFragmentMainActivity : Fragment() {
                 }
                 is AllViewModelFragment.LoadAllList.ResultError -> {
                     Toast.makeText(context, result.errerMessage, Toast.LENGTH_SHORT).show()
+
                 }
             }
         }

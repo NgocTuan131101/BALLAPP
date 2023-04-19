@@ -29,7 +29,7 @@ class AllViewModelFragment @Inject constructor(private val  allRepositoryFragmen
     }
     fun loadAll(userUID : String){
         viewModelScope.launch(CoroutineExceptionHandler{_,throwable -> throwable.printStackTrace()
-        }){
+        }) {
             allRepositoryFragment.loadMatchList(userUID , {
                 loadALLlist.value = LoadAllList.ResultOK(it)
             },{

@@ -35,7 +35,7 @@ class TodayFragmentMainActivity : Fragment() {
     }
 
     private fun initObserve() {
-        todayFragmentViewModel.loadTodayList.observe(viewLifecycleOwner){result->
+        todayFragmentViewModel.loadTodayList.observe(viewLifecycleOwner) { result->
             with(todaybinding){
                 progressBar.visibility = View.GONE
                 recyclerView.visibility = View.VISIBLE
@@ -66,7 +66,7 @@ class TodayFragmentMainActivity : Fragment() {
         todaybinding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             todayAdapter = HomeAdapter(arrayListOf())
-            adapter =todayAdapter
+            adapter = todayAdapter
             todayAdapter.setOnItemClickListerner(object :OnItemClickListerner{
                 override fun onItemClick(requestData: CreateMatchModel) {
                     MainActivityAllDetails.startDetails(context,requestData)
@@ -81,6 +81,7 @@ class TodayFragmentMainActivity : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
+        todaybinding = FragmentTodayMainActivityBinding.inflate(inflater, container, false)
         return todaybinding.root
     }
 }

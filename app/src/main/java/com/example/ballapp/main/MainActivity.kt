@@ -14,6 +14,7 @@ import android.location.Location
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.Window
 import android.widget.Toast
@@ -87,10 +88,10 @@ class MainActivity : AppCompatActivity() {
                         val geocoder = Geocoder(this, Locale.getDefault())
                         val list: List<Address> =
                             geocoder.getFromLocation(
-                            location.latitude,
-                            location.longitude,
-                            1
-                        ) as List<Address>
+                                location.latitude,
+                                location.longitude,
+                                1
+                            ) as List<Address>
                         currentLat = list[0].latitude
                         currentLong = list[0].longitude
                         currentAddress = list[0].getAddressLine(0)
@@ -99,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                 }
             } else {
                 Toast.makeText(this, "Please turn on location", Toast.LENGTH_SHORT).show()
-                val intent = Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS)
+                val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
                 startActivity(intent)
             }
         } else {

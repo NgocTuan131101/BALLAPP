@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ballapp.account.Team.TeamRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -78,7 +77,7 @@ class TeamInformationViewModel @Inject constructor(
         teamUid :String
     ){
         viewModelScope.launch(CoroutineExceptionHandler{_,throwable -> throwable.printStackTrace()
-        }){
+        }) {
             teamRepository.saveTeamImage(imgUri,teamUid,{
                 saveTeamsImage.value = SaveTeamsImage.ResultOk
             },{

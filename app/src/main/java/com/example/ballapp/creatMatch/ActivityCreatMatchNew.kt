@@ -317,13 +317,13 @@ class ActivityCreatMatchNew : AppCompatActivity() {
         }
         creatMatchViewModel.loadTeamInfo.observe(this) { result ->
             with(newcreatMatch) {
-//                progressBar.visibility = View.GONE
+                progressBar.visibility = View.GONE
                 timeLayout.visibility = View.VISIBLE
                 scrollView.visibility = View.VISIBLE
             }
             when (result) {
                 is CreatMatchViewModel.LoadTeamInfo.Loading -> {
-//                    newcreatMatch.progressBar.visibility = View.VISIBLE
+                    newcreatMatch.progressBar.visibility = View.VISIBLE
                 }
                 is CreatMatchViewModel.LoadTeamInfo.LoadImageOk -> {
                     Glide.with(newcreatMatch.teamIagme).load(result.teamImageUrl).centerCrop()

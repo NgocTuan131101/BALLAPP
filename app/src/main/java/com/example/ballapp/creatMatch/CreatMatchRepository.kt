@@ -51,7 +51,7 @@ class CreatMatchRepository @Inject constructor(
             "",
             geoHash
         )
-        firebaseDatabase.getReference("Repository_match").child(matchID).setValue(requestData)
+        firebaseDatabase.getReference("Request_Match").child(matchID).setValue(requestData)
             .addOnCompleteListener() {
                 if (it.isSuccessful) {
                     onSuccess(it.toString())
