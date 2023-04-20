@@ -65,13 +65,11 @@ class AllRepositoryFragment @Inject constructor(private val firebaseDatabase: Fi
                         onSuccess(listRequest)
                     }
                 }
-
                 // nếu lỗi trong phương thức onCancelled, hàm callback onFail sẽ
                 // được gọi vào truyền vào thông báo lỗi
                 override fun onCancelled(error: DatabaseError) {
                     onFail(error.message)
                 }
-
             })
     }
 

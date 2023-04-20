@@ -3,7 +3,6 @@ package com.example.ballapp.main.FragmentHome
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import com.example.ballapp.databinding.FragmentHomeBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
-import org.checkerframework.checker.nullness.qual.NonNull
 import java.io.File
 
 @AndroidEntryPoint
@@ -27,7 +25,7 @@ class FragmentHome : Fragment() {
     private val localFide = File.createTempFile("TempImage", "jpg")
     private val fragmentHomeViewModel: FragmentHomeViewModel by viewModels()
 
-    @SuppressLint("UnsafeOpInUsageError")
+    @SuppressLint("UnsafeOptInUsageError")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
