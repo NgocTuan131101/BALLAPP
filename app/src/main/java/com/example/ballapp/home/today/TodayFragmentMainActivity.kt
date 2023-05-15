@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TodayFragmentMainActivity : Fragment() {
     private lateinit var todaybinding: FragmentTodayMainActivityBinding
-    private val todayFragmentViewModel:TodayFragmentViewModel by viewModels()
+    private val todayFragmentViewModel: TodayFragmentViewModel by viewModels()
     private lateinit var todayAdapter: HomeAdapter
     private val userUID = FirebaseAuth.getInstance().currentUser?.uid
 
@@ -41,10 +41,10 @@ class TodayFragmentMainActivity : Fragment() {
                 recyclerView.visibility = View.VISIBLE
             }
             when(result){
-                is TodayFragmentViewModel.LoadTodayList.Loading->{
+                is TodayFragmentViewModel.LoadTodayList.Loading ->{
                     todaybinding.progressBar.visibility = View.VISIBLE
                 }
-                is TodayFragmentViewModel.LoadTodayList.ResultOk->{
+                is TodayFragmentViewModel.LoadTodayList.ResultOk ->{
                     if(result.list.isEmpty()){
                         todaybinding.recyclerView.visibility = View.GONE
                         todaybinding.progressBar.visibility = View.GONE
@@ -54,7 +54,7 @@ class TodayFragmentMainActivity : Fragment() {
                         todayAdapter.addNewData(result.list)
                     }
                 }
-                is  TodayFragmentViewModel.LoadTodayList.ResultError->{
+                is TodayFragmentViewModel.LoadTodayList.ResultError ->{
                     Toast.makeText(context,result.errorMessage,Toast.LENGTH_SHORT).show()
                 }
             }

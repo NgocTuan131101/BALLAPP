@@ -1,6 +1,5 @@
 package com.example.ballapp.home.all
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import com.example.ballapp.home.all.AllDetailsActivity.MainActivityAllDetails
 import com.example.ballapp.`interface`.OnItemClickListerner
 import com.example.ballball.model.CreateMatchModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.logging.Log
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,10 +49,10 @@ class AllFragmentMainActivity : Fragment() {
     private fun highLightObserve() {
         allViewModelFragment.highLight.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is AllViewModelFragment.HighLighResult.NotHighligeOk -> {}
-                is AllViewModelFragment.HighLighResult.NotHighligeErorr -> {}
-                is AllViewModelFragment.HighLighResult.HighligeErorr -> {}
-                is AllViewModelFragment.HighLighResult.HighligeOk -> {}
+                is AllViewModelFragment.HighLighResult.NotHighlightOk -> {}
+                is AllViewModelFragment.HighLighResult.NotHighlightErorr -> {}
+                is AllViewModelFragment.HighLighResult.HighlightErorr -> {}
+                is AllViewModelFragment.HighLighResult.HighlightOk -> {}
             }
         }
     }
@@ -71,13 +69,11 @@ class AllFragmentMainActivity : Fragment() {
                 recyclerView.visibility = View.VISIBLE
             }
             when (result) {
-
                 is AllViewModelFragment.LoadAllList.Loading -> {
                     allFragmentAllBinding.progressBar.visibility = View.VISIBLE
                 }
                 is AllViewModelFragment.LoadAllList.ResultOK -> {
                     if (result.list.isEmpty()) {
-
                         allFragmentAllBinding.recyclerView.visibility = View.GONE
                         allFragmentAllBinding.imageLayout.visibility = View.VISIBLE
                         allFragmentAllBinding.progressBar.visibility = View.GONE

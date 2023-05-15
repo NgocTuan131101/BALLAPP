@@ -38,10 +38,12 @@ class TodayFragmentRepository @Inject constructor(private val firebaseDatabase: 
                                     DateTimeFormatter.ofPattern("HH:mm", Locale.ENGLISH)
                                 val date = LocalDate.parse(matchDate, dataFormatter)
                                 val time = LocalTime.parse(matchTime, timeFormatter)
-                                if (userUID != list.userUID &&
-                                    userUID != list.clientUID1 &&
-                                    userUID != list.clientUID2 &&
-                                    userUID != list.clientUID3 && date == currentDate
+                                if (
+//                                    userUID != list.userUID &&
+//                                    userUID != list.clientUID1 &&
+//                                    userUID != list.clientUID2 &&
+//                                    userUID != list.clientUID3 &&
+                                    date == currentDate
                                 ) {
                                     listRequest.add(0, list)
                                 }

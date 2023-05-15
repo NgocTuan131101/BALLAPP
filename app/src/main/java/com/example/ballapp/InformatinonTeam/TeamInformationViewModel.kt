@@ -65,7 +65,7 @@ class TeamInformationViewModel @Inject constructor(
         viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
             throwable.printStackTrace()
         }){
-            teamInformationRepository.updateTeamInfo(teamName,teamNote,teamLocation,teamUid,teamPeopleNumber,deviceToken,{
+            teamInformationRepository.updateTeamInfo(teamUid,teamName,teamLocation,teamPeopleNumber,teamNote,deviceToken,{
                 saveTeams.value = SaveTeams.ResultOk
             },{
                 saveTeams.value = SaveTeams.ResultError

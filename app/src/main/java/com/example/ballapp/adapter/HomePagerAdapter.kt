@@ -7,7 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.ballapp.home.all.AllFragmentMainActivity
 import com.example.ballapp.home.nearme.NearMeFragmentMainActivity
 import com.example.ballapp.home.today.TodayFragmentMainActivity
-import com.example.ballapp.main.newcreatmatch.NewCreateFragment
+import com.example.ballapp.home.tomorrow.TomorrowFragmentMainActivity
+import com.example.ballapp.main.Fragmentmatch.newcreata.NewCreateFragment
 import javax.inject.Inject
 
 class HomePagerAdapter  @Inject constructor(fm : FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fm, lifecycle) {
@@ -27,7 +28,7 @@ class HomePagerAdapter  @Inject constructor(fm : FragmentManager, lifecycle: Lif
                     NearMeFragmentMainActivity()
                 }
                 3 ->{
-                    NewCreateFragment()
+                    TomorrowFragmentMainActivity()
                 }
 
                 else -> {

@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.MainActivity">
+
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
@@ -21,6 +22,7 @@
             app:navGraph="@navigation/nav_graph" />
 
     </FrameLayout>
+
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottombar"
         android:layout_width="match_parent"
@@ -49,12 +51,13 @@
             app:itemIconTint="@drawable/bottom_nav_color"
             app:itemTextAppearanceActive="@style/BottomNavigationViewTextStyle"
             app:itemTextAppearanceInactive="@style/BottomNavigationViewTextStyle"
+            app:itemTextColor="@drawable/bottom_nav_color"
             app:labelVisibilityMode="labeled"
-            tools:ignore="BottomAppBar"
             app:menu="@menu/bottom_nav_menu"
-           />
+            tools:ignore="BottomAppBar" />
 
     </com.google.android.material.bottomappbar.BottomAppBar>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -63,7 +66,6 @@
         android:src="@drawable/plus_icon"
         app:borderWidth="0dp"
         app:layout_anchor="@id/bottombar" />
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

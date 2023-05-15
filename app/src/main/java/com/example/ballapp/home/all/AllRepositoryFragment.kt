@@ -1,6 +1,7 @@
 package com.example.ballapp.home.all
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.ballball.model.CreateMatchModel
 import com.google.firebase.database.DataSnapshot
@@ -46,15 +47,18 @@ class AllRepositoryFragment @Inject constructor(private val firebaseDatabase: Fi
                                 // Nếu giá trị CreateMatchModel tồn tại thì , hàm tt kiểm tra xem
                                 // người dùng có đang tham gia vào trận đấu nay không bằng cách
                                 // ss UserUID vs trường clientUID1 ,clientUID2, clientUID3 trong CreateMatchModel
-                                if (userUID != list.userUID && date >= currentDate &&
-                                    userUID != list.clientUID1 &&
-                                    userUID != list.clientUID2 &&
-                                    userUID != list.clientUID3
+//                                Log.e("list",list.toString())
+                                if (date >= currentDate
+//                                    &&
+//                                    userUID != list.clientUID1 &&
+//                                    userUID != list.clientUID2 &&
+//                                    userUID != list.clientUID3
                                 ) {
                                     listRequest.add(0, list)
                                 }
                             }
                         }
+                        Log.e("listRequestSize",listRequest.size.toString())
                         // Nếu người dùng ko thg vào trận đấu and time location >= hiện tại,nó sẽ được thêm vào danh sách listRequest
                         onSuccess(listRequest)
                     }

@@ -1,7 +1,7 @@
-package com.example.ballapp.main.newcreatmatch
+package com.example.ballapp.main.Fragmentmatch.newcreata
 
 import android.os.Build
-import android.os.LocaleList
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import com.example.ballball.model.CreateMatchModel
@@ -38,6 +38,7 @@ class NewCreateFragmentRepository @Inject constructor(private val firebaseDataba
                                 val date = LocalDate.parse(matchTime, formatter)
                                 when {
                                     date >= current -> {
+                                        Log.e("list",list.toString())
                                         listRequet.add(0, list)
                                     }
                                 }

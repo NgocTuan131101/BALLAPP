@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@drawable/loading_dialog_rounded_whilte"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/inter_semibold"
+        android:textColor="#363636"
+        android:text="Tại sao bạn lại hủy trận"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"/>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_marginTop="15dp"
+        android:padding="20dp"
+        android:id="@+id/radio_group">
+        <RadioButton
+            android:id="@+id/radio_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thời gian không phù hợp"
+            android:textColor="#7A7A7A"
+            android:textSize="16sp"
+            android:theme="@style/MyRadioButton"
+            android:fontFamily="@font/inter_medium"
+            />
+        <RadioButton
+            android:id="@+id/radio_2"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đã bắt trận với đội khác"
+            android:textColor="#7A7A7A"
+            android:textSize="16sp"
+            android:theme="@style/MyRadioButton"
+            android:fontFamily="@font/inter_medium"
+            />
+        <RadioButton
+            android:id="@+id/radio_3"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đội không đủ người"
+            android:textColor="#7A7A7A"
+            android:textSize="16sp"
+            android:theme="@style/MyRadioButton"
+            android:fontFamily="@font/inter_medium"
+        />
+        <RadioButton
+            android:id="@+id/radio_4"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Khác..."
+            android:textColor="#7A7A7A"
+            android:textSize="16sp"
+            android:theme="@style/MyRadioButton"
+            android:fontFamily="@font/inter_medium"
+            />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/radio_group"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/no"
+            android:layout_marginEnd="30dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Hủy"
+            android:textColor="#7A7A7A"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:id="@+id/yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Đồng ý"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

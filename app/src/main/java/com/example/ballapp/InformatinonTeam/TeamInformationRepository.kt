@@ -29,9 +29,9 @@ class TeamInformationRepository @Inject constructor(
         teamLocation: String,
         teamPeopleNumber: String,
         teamNote: String,
-        deviceToken: String,
+        deviceToken : String,
         onSuccess: (String) -> Unit,
-        onFail: (String) -> Unit,
+        onFail: (String) -> Unit
     ) {
         val updateTeams = mapOf(
             "teamUid" to teamUid,

@@ -246,7 +246,9 @@ class ActivityCreatMatchNew : AppCompatActivity() {
                         Animation.animateSlideRight(this)
                     }, 1000)
                 }
-                is CreatMatchViewModel.SaveRequest.ResultError -> {}
+                is CreatMatchViewModel.SaveRequest.ResultError -> {
+
+                }
             }
         }
     }

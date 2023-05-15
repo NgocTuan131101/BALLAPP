@@ -12,15 +12,15 @@ class CreatMatchRepository @Inject constructor(
     fun sendRequest(
         userUID: String,
         matchID: String,
-        deviceToken: String, // mã thông báo thiết bị
-        teamPhone: String,
+        deviceToken: String,
         teamName: String,
+        teamPhone: String,
         date: String,
         time: String,
         location: String,
         note: String,
-        teamImageUrl: String,
         teamPeopleNumber: String,
+        teamImageUrl: String,
         locationAddress: String,
         lat: Double,
         long: Double,
@@ -72,7 +72,8 @@ class CreatMatchRepository @Inject constructor(
         onFail: (String) -> Unit,
     ) {
         val allNotification = AllNotificationModel(matchID, teamName, userUID)
-        firebaseDatabase.getReference("Request_Match_Notification").child(matchID).setValue(allNotification)
+        firebaseDatabase.getReference("Request_Match_Notification").child(matchID)
+            .setValue(allNotification)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     onSuccess(it.toString())
@@ -87,15 +88,15 @@ class CreatMatchRepository @Inject constructor(
     fun saveNewCreate(
         userUID: String,
         matchID: String,
-        deviceToken: String, // mã thông báo thiết bị
-        teamPhone: String,
+        deviceToken: String,// mã thông báo thiêt bị
         teamName: String,
+        teamPhone: String,
         date: String,
         time: String,
         location: String,
         note: String,
-        teamImageUrl: String,
         teamPeopleNumber: String,
+        teamImageUrl: String,
         locationAddress: String,
         lat: Double,
         long: Double,

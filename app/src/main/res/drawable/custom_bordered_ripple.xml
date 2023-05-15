@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ripple
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="#C6C6C6">
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid
+        android:color="@color/white"/>
+    <corners
+        android:radius="32dp"
+        />
 
-    <item
-        android:id="@+id/mask"
-        android:drawable="@android:color/white" />
-
-</ripple>
+    <padding
+        android:left="8dp"
+        android:top="8dp"
+        android:right="8dp"
+        android:bottom="8dp"
+        />
+</shape>

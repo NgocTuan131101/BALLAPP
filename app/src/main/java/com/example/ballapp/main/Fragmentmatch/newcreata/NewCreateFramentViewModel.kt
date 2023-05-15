@@ -1,4 +1,4 @@
-package com.example.ballapp.main.newcreatmatch
+package com.example.ballapp.main.Fragmentmatch.newcreata
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,13 +15,13 @@ class NewCreateFramentViewModel @Inject constructor(private val newCreateFragmen
 
     sealed class HighLighResult {
         object HighLighResultOk : HighLighResult()
-        object HighLighResultError :HighLighResult()
-        object NotHighLighResultOK:HighLighResult()
+        object HighLighResultError : HighLighResult()
+        object NotHighLighResultOK: HighLighResult()
         object NotHighLighResultError : HighLighResult()
     }
 
     sealed class LoadNewCreate {
-        object  Loading :LoadNewCreate()
+        object  Loading : LoadNewCreate()
         class ResultOk(val list: ArrayList<CreateMatchModel>) : LoadNewCreate()
         object ResultError : LoadNewCreate()
     }
@@ -29,7 +29,7 @@ class NewCreateFramentViewModel @Inject constructor(private val newCreateFragmen
         viewModelScope.launch(CoroutineExceptionHandler{_,throwable -> throwable.printStackTrace()
         }){
             newCreateFragmentRepository.loadNewCreate(userUID,{
-                loadNewCreate.value =LoadNewCreate.ResultOk(it)
+                loadNewCreate.value = LoadNewCreate.ResultOk(it)
             },{
                 loadNewCreate.value = LoadNewCreate.ResultError
             })

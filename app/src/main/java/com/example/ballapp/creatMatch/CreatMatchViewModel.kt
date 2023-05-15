@@ -72,21 +72,21 @@ class CreatMatchViewModel @Inject constructor(
     }
 
     fun saveRequest(
-        userUID: String,
-        matchID: String,
-        deviceToken: String,
-        teamName: String,
-        teamPhone: String,
-        date: String,
-        time: String,
-        location: String,
-        note: String,
+        userUID : String,
+        matchID : String,
+        deviceToken : String,
+        teamName : String,
+        teamPhone : String,
+        date : String,
+        time : String,
+        location : String,
+        note : String,
         teamPeopleNumber: String,
         teamImageUrl: String,
         locationAddress: String,
         lat: Double,
         long: Double,
-        geoHash: String,
+        geoHash: String
     ) {
         viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
             throwable.printStackTrace()
@@ -95,12 +95,12 @@ class CreatMatchViewModel @Inject constructor(
                 matchID,
                 deviceToken,
                 teamName,
-                time,
                 teamPhone,
                 date,
-                teamPeopleNumber,
+                time,
                 location,
                 note,
+                teamPeopleNumber,
                 teamImageUrl,
                 locationAddress,
                 lat,
@@ -132,21 +132,21 @@ class CreatMatchViewModel @Inject constructor(
     }
 
     fun saveNewCreate(
-        userUID: String,
-        matchID: String,
-        deviceToken: String,
-        teamName: String,
-        teamPhone: String,
-        date: String,
-        time: String,
-        location: String,
-        note: String,
+        userUID : String,
+        matchID : String,
+        deviceToken : String,
+        teamName : String,
+        teamPhone : String,
+        date : String,
+        time : String,
+        location : String,
+        note : String,
         teamPeopleNumber: String,
         teamImageUrl: String,
         locationAddress: String,
         lat: Double,
         long: Double,
-        geoHash: String,
+        geoHash: String
     ) {
         viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
             throwable.printStackTrace()
@@ -155,12 +155,12 @@ class CreatMatchViewModel @Inject constructor(
                 matchID,
                 deviceToken,
                 teamName,
-                time,
                 teamPhone,
                 date,
-                teamPeopleNumber,
+                time,
                 location,
                 note,
+                teamPeopleNumber,
                 teamImageUrl,
                 locationAddress,
                 lat,
