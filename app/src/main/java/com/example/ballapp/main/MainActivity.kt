@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
 import android.location.Address
@@ -22,6 +21,7 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
@@ -161,8 +161,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navBinding() {
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.activity_main_container) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.activity_main_container) as NavHostFragment
         mNavController = navHostFragment.navController
         setupWithNavController(mainBinding.bottomNavigation, mNavController)
         mainBinding.bottomNavigation.menu.getItem(2).isEnabled = false
@@ -214,11 +213,9 @@ class MainActivity : AppCompatActivity() {
             when (result) {
                 is MainActivityViewModel.UpdateUsers.ResultOk -> {}
                 is MainActivityViewModel.UpdateUsers.ResultError -> {}
-                else -> {}
             }
         }
     }
-
 
     private fun createnewMatch() {
         mainBinding.fab.setOnClickListener {

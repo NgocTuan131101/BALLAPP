@@ -1,6 +1,6 @@
 package com.example.ballapp.adapter
 
-import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +14,9 @@ import javax.inject.Inject
 class HomeAdapter @Inject constructor(private var requestList: ArrayList<CreateMatchModel>) :
     RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
     private lateinit var listerner: OnItemClickListerner
-
     fun setOnItemClickListerner(listerner: OnItemClickListerner) {
         this.listerner = listerner
     }
-
     class MyViewHolder(
         private val bindingitems: ItemsBinding,
         private val listener: OnItemClickListerner,
@@ -69,11 +67,11 @@ class HomeAdapter @Inject constructor(private var requestList: ArrayList<CreateM
         notifyDataSetChanged()
     }
 
-    @SuppressLint("Noti fyDataSetChanged")
-    fun addFilterList(filterList : ArrayList<CreateMatchModel>) {
-        requestList = filterList
-        notifyDataSetChanged()
-    }
+//    @SuppressLint("Noti fyDataSetChanged")
+//    fun addFilterList(filterList : ArrayList<CreateMatchModel>) {
+//        requestList = filterList
+//        notifyDataSetChanged()
+//    }
 
     override fun getItemCount(): Int {
         return requestList.size

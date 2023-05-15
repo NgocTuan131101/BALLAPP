@@ -27,7 +27,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/custom_bordered_ripple">
+                android:background="@drawable/back_button_background">
 
                 <ImageView
                     android:id="@+id/back"

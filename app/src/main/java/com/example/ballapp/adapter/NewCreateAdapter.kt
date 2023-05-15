@@ -79,6 +79,7 @@ class NewCreateAdapter @Inject constructor(private var newCreateList : ArrayList
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val items = ItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(items, listerner, highLightListerner, notHighLightListerner)
+//        return MyViewHolder(items, listerner)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

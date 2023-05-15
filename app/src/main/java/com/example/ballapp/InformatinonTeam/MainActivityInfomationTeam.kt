@@ -102,7 +102,7 @@ class MainActivityInfomationTeam : AppCompatActivity() {
                     val handle = Handler()
                     handle.postDelayed({
                         dialog.cancel()
-                    }, 50000)
+                    }, 500)
                 }
                 is TeamInformationViewModel.SaveTeamsImage.ResultError -> {
                     Toast.makeText(this, resutl.errorMessage, Toast.LENGTH_SHORT).show()

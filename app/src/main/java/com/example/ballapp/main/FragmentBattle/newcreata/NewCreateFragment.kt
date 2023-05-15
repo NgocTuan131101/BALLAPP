@@ -1,4 +1,4 @@
-package com.example.ballapp.main.newcreatmatch
+package com.example.ballapp.main.Fragmentmatch.newcreata
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ballapp.R
 import com.example.ballapp.adapter.NewCreateAdapter
 import com.example.ballapp.creatMatch.ActivityCreatMatchNew
-import com.example.ballapp.databinding.ActivityCreateDetailsNewBinding
 import com.example.ballapp.databinding.FragmentNewCreateBinding
 import com.example.ballapp.home.all.AllDetailsActivity.MainActivityAllDetails
 import com.example.ballapp.`interface`.HighLightOnClickListerner
@@ -48,6 +46,7 @@ class NewCreateFragment : Fragment() {
                 is NewCreateFramentViewModel.HighLighResult.NotHighLighResultError ->{}
                 is NewCreateFramentViewModel.HighLighResult.HighLighResultOk ->{}
                 is NewCreateFramentViewModel.HighLighResult.HighLighResultError ->{}
+                else -> {}
             }
         }
     }
@@ -72,6 +71,7 @@ class NewCreateFragment : Fragment() {
                     }
                 }
                 is NewCreateFramentViewModel.LoadNewCreate.ResultError -> {}
+                else -> {}
             }
         }
     }

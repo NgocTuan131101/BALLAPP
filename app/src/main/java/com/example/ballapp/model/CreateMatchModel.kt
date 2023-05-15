@@ -46,14 +46,9 @@ data class  CreateMatchModel(
     val clientUID : String = "",
     @SerializedName("geoHash")
     val geoHash : String = "",
-    @SerializedName("clientUid1")
-    var clientUID1 : String = "",
-    @SerializedName("clientUid2")
-    var clientUID2 : String = "",
-    @SerializedName("clientUid3")
-    var clientUID3 : String = "",
     @SerializedName("highlight")
     var highlight : Int = 0,
     @SerializedName("clientClickNumber")
     var clientClickNumber : Int = 0
-) : Parcelable
+) : Parcelable {
+}

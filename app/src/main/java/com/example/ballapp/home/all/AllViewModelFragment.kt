@@ -15,17 +15,17 @@ class AllViewModelFragment @Inject constructor(private val  allRepositoryFragmen
     val highLight = MutableLiveData<HighLighResult>()
 
     sealed class HighLighResult {
-        object HighligeOk :HighLighResult()
-        object HighligeErorr : HighLighResult()
-        object NotHighligeOk : HighLighResult()
-        object NotHighligeErorr : HighLighResult()
+        object HighlightOk : HighLighResult()
+        object HighlightErorr : HighLighResult()
+        object NotHighlightOk : HighLighResult()
+        object NotHighlightErorr : HighLighResult()
 
     }
 
     sealed class LoadAllList{
         object  Loading: LoadAllList()
         class ResultOK(val list: ArrayList<CreateMatchModel>) : LoadAllList()
-        class ResultError(val errerMessage :String):LoadAllList()
+        class ResultError(val errerMessage :String): LoadAllList()
     }
     fun loadAll(userUID : String){
         viewModelScope.launch(CoroutineExceptionHandler{_,throwable -> throwable.printStackTrace()
@@ -37,26 +37,27 @@ class AllViewModelFragment @Inject constructor(private val  allRepositoryFragmen
             })
         }
     }
-    fun handlehighligt(matchID: String){
-        viewModelScope.launch(CoroutineExceptionHandler{_,throwable -> throwable.printStackTrace()
-        }){
-            allRepositoryFragment.highligt(matchID,{
-                highLight.value = HighLighResult.HighligeOk
-
-            },{
-                highLight.value = HighLighResult.HighligeErorr
-            })
-        }
-
-    }
-    fun handlenothighligt(matchID: String){
-        viewModelScope.launch(CoroutineExceptionHandler{_,throwable -> throwable.printStackTrace()
-        }){
-            allRepositoryFragment.notHighLight(matchID,{
-                  highLight.value =HighLighResult.NotHighligeOk
-            },{
-                highLight.value = HighLighResult.NotHighligeErorr
-            })
-        }
-    }
+//    fun handlehighligt(matchID: String){
+//        viewModelScope.launch(CoroutineExceptionHandler{_ , throwable ->
+//            throwable.printStackTrace()
+//        }){
+//            allRepositoryFragment.highligt(matchID,{
+//                highLight.value = HighLighResult.HighlightOk
+//
+//            },{
+//                highLight.value = HighLighResult.HighlightErorr
+//            })
+//        }
+//
+//    }
+//    fun handlenothighligt(matchID: String){
+//        viewModelScope.launch(CoroutineExceptionHandler{_,throwable -> throwable.printStackTrace()
+//        }){
+//            allRepositoryFragment.notHighLight(matchID,{
+//                  highLight.value = HighLighResult.NotHighlightOk
+//            },{
+//                highLight.value = HighLighResult.NotHighlightErorr
+//            })
+//        }
+//    }
 }
