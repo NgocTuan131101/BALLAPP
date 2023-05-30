@@ -1,4 +1,4 @@
-package com.example.ballapp.main.Fragmentmatch.newcreata.DetailsNewCreate
+package com.example.ballapp.main.FragmentBattle.newcreata.DetailsNewCreate
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -11,7 +11,6 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -19,6 +18,7 @@ import android.view.View
 import android.view.Window
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.bumptech.glide.Glide
 import com.example.ballapp.R
@@ -26,22 +26,14 @@ import com.example.ballapp.databinding.ActivityCreateDetailsNewBinding
 import com.example.ballapp.databinding.SignOutDialogBinding
 import com.example.ballapp.databinding.SuccessDialogBinding
 import com.example.ballapp.utils.Animation
-import com.example.ballapp.utils.Model.currentAddress
-import com.example.ballapp.utils.Model.currentLat
-import com.example.ballapp.utils.Model.currentLong
-import com.example.ballapp.utils.Model.destinationAddress
-import com.example.ballapp.utils.Model.destinationLat
-import com.example.ballapp.utils.Model.destinationLong
-import com.example.ballapp.utils.Model.matchID
+import com.example.ballapp.utils.Model
 import com.example.ballball.model.CreateMatchModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
-import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-@AndroidEntryPoint
-class CreateDetailsActivityNew : AppCompatActivity() {
+class CreateDetailsActivityNew: AppCompatActivity() {
     private lateinit var activityCreateDetailsNewBindingbinding: ActivityCreateDetailsNewBinding
     private val CreateDatailsViewmodel: CreateDatailsViewmodel by viewModels()
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -126,7 +118,7 @@ class CreateDetailsActivityNew : AppCompatActivity() {
             signOutDialogBinding.content.text = "Bạn có muốn xóa trận đấu này không ?"
             signOutDialogBinding.yes.setOnClickListener {
                 if (userUID != null) {
-                    CreateDatailsViewmodel.deleteNewCreate(userUID, matchID!!)
+                    CreateDatailsViewmodel.deleteNewCreate(userUID, Model.matchID!!)
                 }
                 dialog.dismiss()
             }
@@ -156,10 +148,10 @@ class CreateDetailsActivityNew : AppCompatActivity() {
                 } else {
                     note.text = data?.note
                 }
-                matchID = data?.matchID
-                destinationLat = data?.lat
-                destinationLong = data?.long
-                destinationAddress = data?.locationAddress
+                Model.matchID = data?.matchID
+                Model.destinationLat = data?.lat
+                Model.destinationLong = data?.long
+                Model.destinationAddress = data?.locationAddress
 
             }
         }
@@ -192,14 +184,14 @@ class CreateDetailsActivityNew : AppCompatActivity() {
             android.Manifest.permission.ACCESS_FINE_LOCATION,
             android.Manifest.permission.ACCESS_COARSE_LOCATION
         ),
-        permissionId)
-}
+            permissionId)
+    }
     private fun checkPermissions():Boolean{
         if(ActivityCompat.checkSelfPermission(
                 this, android.Manifest.permission.ACCESS_BACKGROUND_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                 this, android.Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED)
+            ) == PackageManager.PERMISSION_GRANTED)
         {
             return true
         }
@@ -210,21 +202,21 @@ class CreateDetailsActivityNew : AppCompatActivity() {
         if (checkPermissions()) {
             if (isLocationEnabled()){
                 fusedLocationProviderClient.lastLocation.addOnCompleteListener(this){
-                    task ->
-                    val location:Location? =task.result
+                        task ->
+                    val location: Location? =task.result
                     if(location != null){
                         val geocoder = Geocoder(this, Locale.getDefault())
-                        val list:List<Address> =
+                        val list:kotlin.collections.List<Address> =
                             geocoder.getFromLocation(location.latitude,location.longitude,1) as List<Address>
-                        currentLat = list[0].latitude
-                        currentLong = list[0].longitude
-                        currentAddress = list[0].getAddressLine(0)
-                        Log.e("Address", currentAddress.toString())
+                        Model.currentLat = list[0].latitude
+                        Model.currentLong = list[0].longitude
+                        Model.currentAddress = list[0].getAddressLine(0)
+                        Log.e("Address", Model.currentAddress.toString())
                     }
 
                 }
             }else{
-                Toast.makeText(this,"Hãy bật định vị của bạn",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Hãy bật định vị của bạn", Toast.LENGTH_SHORT).show()
                 val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
                 startActivity(intent)
             }

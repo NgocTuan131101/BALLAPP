@@ -1,11 +1,11 @@
-package com.example.ballapp.main.Fragmentmatch.newcreata
+package com.example.ballapp.main.FragmentBattle.newcreata
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ballapp.R
@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NewCreateFragment : Fragment() {
+class NewCreateFragment :  Fragment() {
     private lateinit var newCreateBinding: FragmentNewCreateBinding
     private lateinit var newCreateAdapter: NewCreateAdapter
     private  val newCreateFramentViewModel: NewCreateFramentViewModel by viewModels()
@@ -85,8 +85,8 @@ class NewCreateFragment : Fragment() {
 
     private fun createMatchNew() {
         newCreateBinding.buttom.setOnClickListener {
-            startActivity(Intent(context,ActivityCreatMatchNew::class.java))
-            activity?.overridePendingTransition(R.anim.animate_slide_left_enter,R.anim.animate_slide_left_exit)
+            startActivity(Intent(context, ActivityCreatMatchNew::class.java))
+            activity?.overridePendingTransition(R.anim.animate_slide_left_enter, R.anim.animate_slide_left_exit)
         }
     }
 
@@ -97,18 +97,18 @@ class NewCreateFragment : Fragment() {
             adapter = newCreateAdapter
 
             newCreateAdapter.setOnItemClickListerner(object :
-            OnItemClickListerner{
+                OnItemClickListerner {
                 override fun onItemClick(requestData: CreateMatchModel) {
                     MainActivityAllDetails.startDetails(context,requestData)
-                    activity?.overridePendingTransition(R.anim.animate_slide_left_exit,R.anim.animate_slide_left_exit)
+                    activity?.overridePendingTransition(R.anim.animate_slide_left_exit, R.anim.animate_slide_left_exit)
                 }
             })
-            newCreateAdapter.setOnHighLightClickListerner(object :HighLightOnClickListerner {
+            newCreateAdapter.setOnHighLightClickListerner(object : HighLightOnClickListerner {
                 override fun onHighLightClickListerner(requestData: CreateMatchModel) {
                     newCreateFramentViewModel.handleHighLight(userUID!!,requestData.matchID)
                 }
             })
-            newCreateAdapter.setOnNotHighLightClickListerner(object :NotHighLightOnClickListerner
+            newCreateAdapter.setOnNotHighLightClickListerner(object : NotHighLightOnClickListerner
             {
                 override fun onNotHighLightClickListerner(requestData: CreateMatchModel) {
                     newCreateFramentViewModel.handleNotHingLight(userUID!!,requestData.matchID)
@@ -121,7 +121,7 @@ class NewCreateFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        newCreateBinding=FragmentNewCreateBinding.inflate(layoutInflater)
+        newCreateBinding= FragmentNewCreateBinding.inflate(layoutInflater)
         return newCreateBinding.root
     }
 }

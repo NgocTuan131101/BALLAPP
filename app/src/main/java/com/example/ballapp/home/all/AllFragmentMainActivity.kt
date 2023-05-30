@@ -47,7 +47,7 @@ class AllFragmentMainActivity : Fragment() {
         trong khối mã của từng trường hợp trong hàm when().
     */
     private fun highLightObserve() {
-        allViewModelFragment.highLight.observe(viewLifecycleOwner) { result ->
+        allViewModelFragment.highligt.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is AllViewModelFragment.HighLighResult.NotHighlightOk -> {}
                 is AllViewModelFragment.HighLighResult.NotHighlightErorr -> {}

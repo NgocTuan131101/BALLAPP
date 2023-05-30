@@ -21,7 +21,9 @@ import com.example.ballball.model.CreateMatchModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NearMeFragmentMainActivity : Fragment() {
     private lateinit var nearMeFragment: FragmentNearmeMainActivityBinding
     private lateinit var nearMeAdapter: NearMeAdapter
@@ -88,7 +90,7 @@ class NearMeFragmentMainActivity : Fragment() {
             nearMeAdapter = NearMeAdapter(arrayListOf())
             adapter = nearMeAdapter
             nearMeAdapter.setOnItemClickListerner(object :
-            OnItemClickListerner{
+                OnItemClickListerner{
                 override fun onItemClick(requestData: CreateMatchModel) {
                     MainActivityAllDetails.startDetails(context,requestData)
                     activity?.overridePendingTransition(R.anim.animate_slide_left_enter,R.anim.animate_slide_left_exit)

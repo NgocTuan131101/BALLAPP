@@ -28,26 +28,46 @@ class UpComingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initList()
-        loadListOb()
+        initobserve()
+        if(userUID != null){
+            upComingViewModel.loadUpComingList(userUID)
+        }
     }
 
-    private fun loadListOb() {
-        upComingViewModel.loadUpComing.observe(viewLifecycleOwner){result ->
-            with(upComingBinding){
+    private fun initobserve() {
+        loadListObserve()
+        highlightObserve()
+    }
+
+    private fun highlightObserve() {
+        upComingViewModel.highLight.observe(viewLifecycleOwner){result ->
+            when(result){
+                is UpComingViewModel.HighLightResult.NotHighLightOk -> {}
+                is UpComingViewModel.HighLightResult.NotHighLightError -> {}
+                is UpComingViewModel.HighLightResult.NotHighLightOk -> {}
+                is UpComingViewModel.HighLightResult.NotHighLightError -> {}
+                else -> {}
+            }
+        }
+    }
+
+
+    private fun loadListObserve() {
+        upComingViewModel.loadUpComing.observe(viewLifecycleOwner) { result ->
+            with(upComingBinding) {
                 progressBar.visibility = View.GONE
                 recyclerView.visibility = View.VISIBLE
             }
-            when(result){
-                is UpComingViewModel.LoadUpComingResult.Loading ->{
+            when (result) {
+                is UpComingViewModel.LoadUpComingResult.Loading -> {
                     upComingBinding.progressBar.visibility = View.VISIBLE
                 }
-                is UpComingViewModel.LoadUpComingResult.ResultOk ->{
-                    if(result.list.isEmpty()){
+                is UpComingViewModel.LoadUpComingResult.ResultOk -> {
+                    if (result.list.isEmpty()) {
                         upComingBinding.imageLayout.visibility = View.VISIBLE
                         upComingBinding.recyclerView.visibility = View.GONE
-                        upComingBinding.progressBar.visibility =View.GONE
-                    }
-                    else{
+                        upComingBinding.progressBar.visibility = View.GONE
+                    } else {
                         upComingAdapter.addNewData(result.list)
                     }
                 }
@@ -60,26 +80,29 @@ class UpComingFragment : Fragment() {
         upComingBinding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             upComingAdapter = UpComingAdapter(arrayListOf())
-            adapter =upComingAdapter
+            adapter = upComingAdapter
 
             upComingAdapter.setOnItemClickListerner(object :
-            OnItemClickListerner{
+                OnItemClickListerner {
                 override fun onItemClick(requestData: CreateMatchModel) {
-                    ActivityUpcomingDetails.startDetails(context,requestData)
-                    activity?.overridePendingTransition(R.anim.animate_slide_left_enter,R.anim.animate_slide_left_exit)
+                    ActivityUpcomingDetails.startDetails(context, requestData)
+                    activity?.overridePendingTransition(
+                        R.anim.animate_slide_left_enter,
+                        R.anim.animate_slide_left_exit
+                    )
 
                 }
             })
             upComingAdapter.setOnHighLightClickListerner(object :
-            HighLightOnClickListerner{
+                HighLightOnClickListerner {
                 override fun onHighLightClickListerner(requestData: CreateMatchModel) {
-                    upComingViewModel.handleNotHighLight(userUID!!,requestData.matchID)
+                    upComingViewModel.handleNotHighLight(userUID!!, requestData.matchID)
                 }
             })
             upComingAdapter.setOnNotHighLightClickListerner(object :
-            NotHighLightOnClickListerner{
+                NotHighLightOnClickListerner {
                 override fun onNotHighLightClickListerner(requestData: CreateMatchModel) {
-                    upComingViewModel.handleNotHighLight(userUID!!,requestData.matchID)
+                    upComingViewModel.handleNotHighLight(userUID!!, requestData.matchID)
                 }
             })
 
@@ -90,7 +113,7 @@ class UpComingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        upComingBinding = FragmentUpComingBinding.inflate(inflater,container,false)
+        upComingBinding = FragmentUpComingBinding.inflate(inflater, container, false)
         return upComingBinding.root
     }
 

@@ -1,5 +1,6 @@
 package com.example.ballapp.home.all.AllDetailsActivity
 
+import com.example.ballapp.model.WaitMatchNotificationModel
 import com.example.ballball.model.CreateMatchModel
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.FirebaseDatabase
@@ -58,6 +59,24 @@ class AllDetailsRepository @Inject constructor(private val firebaseDatabase: Fir
                 onFail(it.message.orEmpty())
             }
 
+    }
+    fun waitMatchNotification(
+        userUID: String, matchID: String, date: String, time: String, clientTeamName: String,
+        onSuccess : (String) -> Unit,
+        onFail : (String) -> Unit
+    ) {
+        val waitMatchNotificationModel = WaitMatchNotificationModel(userUID, matchID, date, time, clientTeamName)
+        firebaseDatabase.getReference("waitRequest_Notification").child(userUID).child(matchID).setValue(waitMatchNotificationModel)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    onSuccess(it.toString())
+                } else {
+                    onFail(it.exception?.message.orEmpty())
+                }
+            }
+            .addOnFailureListener {
+                onFail(it.message.orEmpty())
+            }
     }
     fun waitMatchListNotification(
         clientUID : String,

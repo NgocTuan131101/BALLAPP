@@ -12,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AllViewModelFragment @Inject constructor(private val  allRepositoryFragment: AllRepositoryFragment):ViewModel() {
     val loadALLlist = MutableLiveData<LoadAllList>()
-    val highLight = MutableLiveData<HighLighResult>()
+    val highligt = MutableLiveData<HighLighResult>()
 
     sealed class HighLighResult {
         object HighlightOk : HighLighResult()
@@ -42,10 +42,10 @@ class AllViewModelFragment @Inject constructor(private val  allRepositoryFragmen
             throwable.printStackTrace()
         }){
             allRepositoryFragment.highligt(matchID,{
-                highLight.value = HighLighResult.HighlightOk
+                highligt.value = HighLighResult.HighlightOk
 
             },{
-                highLight.value = HighLighResult.HighlightErorr
+                highligt.value = HighLighResult.HighlightErorr
             })
         }
 
@@ -54,10 +54,11 @@ class AllViewModelFragment @Inject constructor(private val  allRepositoryFragmen
         viewModelScope.launch(CoroutineExceptionHandler{_,throwable -> throwable.printStackTrace()
         }){
             allRepositoryFragment.notHighLight(matchID,{
-                  highLight.value = HighLighResult.NotHighlightOk
+                highligt.value = HighLighResult.NotHighlightOk
             },{
-                highLight.value = HighLighResult.NotHighlightErorr
+                highligt.value = HighLighResult.NotHighlightErorr
             })
         }
     }
+
 }

@@ -1,27 +1,26 @@
-package com.example.ballapp.main.Fragmentmatch.upcoming
+package com.example.ballapp.main.Fragmentmatch.wait
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.core.snap
 import com.example.ballball.model.CreateMatchModel
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import java.time.LocalDate
-import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
-class UpComingRepository @Inject constructor(private val firebaseDatabase: FirebaseDatabase) {
-    fun loadUpComingList(
-        userUID : String,
-        onSuccess : (ArrayList<CreateMatchModel>) -> Unit,
-        onFail : (String) -> Unit
+class WaitRepository @Inject constructor(private val firebaseDatabase: FirebaseDatabase) {
+    fun loadWaitList(
+        userUID: String,
+        onSuccess: (ArrayList<CreateMatchModel>) -> Unit,
+        onFail: (String) -> Unit,
     ) {
-        firebaseDatabase.getReference("upComingMatch").child(userUID).addValueEventListener(object :
+        firebaseDatabase.getReference("waitRequest").child(userUID).addValueEventListener(object :
             ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -29,25 +28,21 @@ class UpComingRepository @Inject constructor(private val firebaseDatabase: Fireb
                     val listRequest = ArrayList<CreateMatchModel>()
                     for (requestSnapshot in snapshot.children) {
                         requestSnapshot.getValue(CreateMatchModel::class.java)?.let { list ->
-                            val currentDate = LocalDate.now()
-                            val currentTime = LocalTime.now()
-                            val matchDate = list.date
-                            val matchTime = list.time
-                            val dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH)
-                            val timeFormatter = DateTimeFormatter.ofPattern("HH:mm", Locale.ENGLISH)
-                            val date = LocalDate.parse(matchDate, dateFormatter)
-                            val time = LocalTime.parse(matchTime, timeFormatter)
-
-                            if (date >= currentDate) {
-                                Log.e("date", date.toString())
-                                listRequest.add(0, list)
+                            val current = LocalDate.now()
+                            val matchTime = list.date
+                            val formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy", Locale.ENGLISH)
+                            val date = LocalDate.parse(matchTime,formatter)
+                            when{
+                                date >= current ->{
+                                    listRequest.add(0,list)
+                                }
                             }
                         }
                     }
                     onSuccess(listRequest)
-                } else {
-                    val listRequest = ArrayList<CreateMatchModel>()
-                    onSuccess(listRequest)
+                }else{
+                    val listRequet = kotlin.collections.ArrayList<CreateMatchModel>()
+                    onSuccess(listRequet)
                 }
             }
 
@@ -56,7 +51,6 @@ class UpComingRepository @Inject constructor(private val firebaseDatabase: Fireb
             }
         })
     }
-
     fun highlight(
         userUID : String,
         matchID : String,
@@ -67,7 +61,7 @@ class UpComingRepository @Inject constructor(private val firebaseDatabase: Fireb
             "highlight" to 1
         )
 
-        firebaseDatabase.getReference("upComingMatch").child(userUID).child(matchID).updateChildren(highlight)
+        firebaseDatabase.getReference("waitRequest").child(userUID).child(matchID).updateChildren(highlight)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     onSuccess(it.toString())
@@ -90,7 +84,7 @@ class UpComingRepository @Inject constructor(private val firebaseDatabase: Fireb
             "highlight" to 0
         )
 
-        firebaseDatabase.getReference("upComingMatch").child(userUID).child(matchID).updateChildren(notHighLight)
+        firebaseDatabase.getReference("waitRequest").child(userUID).child(matchID).updateChildren(notHighLight)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     onSuccess(it.toString())

@@ -24,13 +24,16 @@
         android:theme="@style/Theme.BALLAPP"
         tools:targetApi="31">
         <activity
-            android:name=".NearMeFragmentRepository"
+            android:name=".main.Fragmentmatch.confirm.DetailsConfirm.ActivityConfirmDetails"
             android:exported="false" />
         <activity
-            android:name=".ActivityUpcomingdetails"
+            android:name=".main.Fragmentmatch.upcoming.DetailsUpcoming.ActivityUpcomingDetails"
             android:exported="false" />
         <activity
             android:name=".main.FragmentMessagen.MessagenDetails.ChatDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.FragmentBattle.newcreata.DetailsNewCreate.CreateDetailsActivityNew"
             android:exported="false" />
         <activity
             android:name=".home.all.AllDetailsActivity.MainActivityAllDetails"

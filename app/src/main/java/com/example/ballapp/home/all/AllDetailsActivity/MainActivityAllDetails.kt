@@ -29,10 +29,12 @@ import com.example.ballapp.R
 import com.example.ballapp.databinding.ActivityMainAllDetailsBinding
 import com.example.ballapp.databinding.SignOutDialogBinding
 import com.example.ballapp.databinding.SuccessDialogBinding
+import com.example.ballapp.main.FragmentMessagen.MessagenDetails.ChatDetailsActivity
 import com.example.ballapp.utils.Animation
 import com.example.ballapp.utils.Model
 import com.example.ballapp.utils.Model.click
 import com.example.ballapp.utils.Model.clientImageUrl
+import com.example.ballapp.utils.Model.clientTeamName
 import com.example.ballapp.utils.Model.destinationAddress
 import com.example.ballapp.utils.Model.destinationLat
 import com.example.ballapp.utils.Model.destinationLong
@@ -69,6 +71,7 @@ class MainActivityAllDetails : AppCompatActivity() {
     var click: Int? = null
     var matchID: String? = null
     var clientTeamName: String? = null
+
     companion object {
         private const val KEY_DATA = "request_data"
         fun startDetails(context: Context, data: CreateMatchModel?) {
@@ -77,6 +80,7 @@ class MainActivityAllDetails : AppCompatActivity() {
             })
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         mainActivityAllDetails = ActivityMainAllDetailsBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -92,10 +96,10 @@ class MainActivityAllDetails : AppCompatActivity() {
     }
 
     private fun saveWaitMatchListNotificaationOb() {
-        allDetailsViewModel.waitMatchListNotification.observe(this){result ->
-            when(result){
-                is AllDetailsViewModel.WaitMatchListNotificationResult.ResultOk ->{}
-                is AllDetailsViewModel.WaitMatchListNotificationResult.ResultError ->{}
+        allDetailsViewModel.waitMatchListNotification.observe(this) { result ->
+            when (result) {
+                is AllDetailsViewModel.WaitMatchListNotificationResult.ResultOk -> {}
+                is AllDetailsViewModel.WaitMatchListNotificationResult.ResultError -> {}
             }
         }
     }
@@ -111,11 +115,14 @@ class MainActivityAllDetails : AppCompatActivity() {
 
     private fun phoneCall() {
         mainActivityAllDetails.phoneCall.setOnClickListener {
-            if(ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE),1)
-            }
-            else{
-                val  intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phomeNumber"))
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.CALL_PHONE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE), 1)
+            } else {
+                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phomeNumber"))
                 startActivity(intent)
                 Animation.animateSlideLeft(this)
             }
@@ -124,13 +131,18 @@ class MainActivityAllDetails : AppCompatActivity() {
 
     private fun chat() {
         mainActivityAllDetails.openChat.setOnClickListener {
+            val intent = Intent(this, ChatDetailsActivity::class.java)
+            intent.putExtra("teamName", name)
+            intent.putExtra("userUid", teamConfirmUID)
+            startActivity(intent)
+            Animation.animateSlideLeft(this)
 
         }
     }
 
     private fun catchMatch() {
         mainActivityAllDetails.catchMatch.setOnClickListener {
-            val dialog = Dialog(this,R.style.MyTimePickerTheme)
+            val dialog = Dialog(this, R.style.MyTimePickerTheme)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             signOutDialogBinding = SignOutDialogBinding.inflate(layoutInflater)
             dialog.setContentView(signOutDialogBinding.root)
@@ -139,24 +151,25 @@ class MainActivityAllDetails : AppCompatActivity() {
             signOutDialogBinding.title.text = "Bắt trận"
             signOutDialogBinding.content.text = "Bạn có muốn bắt trận với $name không ?"
             signOutDialogBinding.yes.setOnClickListener {
-                click = Model.click?.plus(1)
+                click = click?.plus(1)
                 val clientUID = "clienUID$click"
                 matchID?.let { matchID ->
-                    if(userUID != null){
+                    if (userUID != null) {
                         click?.let { click ->
-                            allDetailsViewModel.handleCatchMatch(userUID, userUID,teamConfirmUID!!,
-                            matchID, deviceToken!!,name!!,phomeNumber!!, matchDate!!, matchTime!!,
-                                matchLocation!!, teamNote!!, teamPeopleNumber!!, teamImageUrl!!,
-                                destinationAddress!!, destinationLat!!, destinationLong!!,click,clientTeamName!!,clientUID,
-                            clientImageUrl!!,userUID,
-                                teamConfirmUID!!,
-                                geoHash!!,click)
-                            val timeUtils :Long = System.currentTimeMillis()
-                            allDetailsViewModel.waiMatchListNotification(teamConfirmUID!!,clientTeamName!!,
-                                userImageUrl!!,"waitMatch",
+                            allDetailsViewModel.handleCatchMatch(
+                                userUID, userUID, teamConfirmUID!!, matchID, deviceToken!!, name!!, phomeNumber!!,
+                                matchDate!!, matchTime!!, matchLocation!!, teamNote!!, teamPeopleNumber!!, teamImageUrl!!,
+                                destinationAddress!!, destinationLat!!, destinationLong!!, click, clientTeamName!!, clientUID,
+                                clientImageUrl!!, userUID, teamConfirmUID!!, geoHash!!, click
+                            )
+                            val timeUtils: Long = System.currentTimeMillis()
+                            allDetailsViewModel.waiMatchListNotification(
+                                teamConfirmUID!!, clientTeamName!!,
+                                userImageUrl!!, "waitMatch",
                                 matchDate!!,
                                 matchTime!!,
-                            timeUtils)
+                                timeUtils
+                            )
                         }
                     }
                 }
@@ -172,14 +185,15 @@ class MainActivityAllDetails : AppCompatActivity() {
     private fun cachMatchOb() {
         allDetailsViewModel.catchMatch.observe(this) { result ->
             when (result) {
-                is AllDetailsViewModel.CatchMatch.ResultOK ->{
-                    val dialog = Dialog(this,R.style.MyTimePickerTheme)
+                is AllDetailsViewModel.CatchMatch.ResultOK -> {
+                    val dialog = Dialog(this, R.style.MyTimePickerTheme)
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                     successDialogBinding = SuccessDialogBinding.inflate(layoutInflater)
                     dialog.setContentView(successDialogBinding.root)
                     dialog.setCancelable(false)
                     dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    successDialogBinding.text.text = "Yêu cầu của bạn đã được gửi, chờ $name xác nhân"
+                    successDialogBinding.text.text =
+                        "Yêu cầu của bạn đã được gửi, chờ $name xác nhân"
                     successDialogBinding.next.setOnClickListener {
                         dialog.dismiss()
                         finish()
@@ -191,11 +205,16 @@ class MainActivityAllDetails : AppCompatActivity() {
                         dialog.cancel()
                         finish()
                         Animation.animateSlideRight(this)
-                    },5000)
+
+                    }, 5000)
                 }
                 is AllDetailsViewModel.CatchMatch.ResultError -> {}
                 is AllDetailsViewModel.CatchMatch.WaitMatchOK -> {}
-                is AllDetailsViewModel.WaitMatchListNotificationResult -> {}
+                is AllDetailsViewModel.CatchMatch.WaitMatchError -> {}
+                is AllDetailsViewModel.CatchMatch.WaitMatchNotificationOk -> {}
+                is AllDetailsViewModel.CatchMatch.WaitMatchErrorNotificationError -> {}
+                is AllDetailsViewModel.CatchMatch.ConfirmMatchOk -> {}
+                is AllDetailsViewModel.CatchMatch.ConfirmMatchError -> {}
                 else -> {}
             }
         }
@@ -270,6 +289,7 @@ class MainActivityAllDetails : AppCompatActivity() {
             Animation.animateSlideRight(this)
         }
     }
+
     @SuppressLint("MissingSuperCall")
     override fun onRequestPermissionsResult(
         requestCode: Int,

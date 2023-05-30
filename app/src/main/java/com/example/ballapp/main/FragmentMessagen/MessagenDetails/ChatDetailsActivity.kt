@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
+
 import com.example.ballapp.adapter.ChatDetailsAdapter
 import com.example.ballapp.databinding.ActivityChatDetailsBinding
 import com.example.ballapp.model.UsersModel
@@ -62,6 +63,7 @@ class ChatDetailsActivity : AppCompatActivity() {
         readMessageObserve()
     }
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initEvents() {
         binding()
@@ -102,6 +104,7 @@ class ChatDetailsActivity : AppCompatActivity() {
                 }
         }
         if (userUID != null) {
+
             StorageConnection.storageReference.getReference("Users").child(userUID).downloadUrl
                 .addOnSuccessListener {
                     teamImageUrl = it.toString()
@@ -132,20 +135,21 @@ class ChatDetailsActivity : AppCompatActivity() {
         super.onBackPressed()
         com.example.ballapp.utils.Animation.animateSlideRight(this)
     }
-    /*
-        trước tiên kiểm tra xem văn bản được nhập trong trường message có rỗng hay không.
-        Nếu văn bản không rỗng, tiếp theo, nó tạo ra một dấu thời gian hiện tại bằng cách sử dụng LocalDateTime.
-        now() và định dạng nó bằng mẫu "HH:mm dd-MM-yyyy" sử dụng DateTimeFormatter.
-        Thời gian được định dạng được chuyển đổi thành chuỗi.
-        Nó kiểm tra xem biến userUID có khác null hay không.
-        Nếu receiverId là null, nó gọi chatDetailsViewModel.saveChat()
-        với các tham số cần thiết để lưu tin nhắn cho người dùng được chỉ định bởi userUID,
-        người nhận được chỉ định bởi intentReceiverId, và các chi tiết khác như văn bản tin nhắn,
-         thời gian được định dạng,URL hình ảnh đội và tên đội.
-        Nếu receiverId khác null, nó gọi chatDetailsViewModel.saveChat()
-        với các tham số cần thiết tương tự như trường hợp trước nhưng sử dụng receiverId thay vì intentReceiverId.
-   
-     */
+/*
+    trước tiên kiểm tra xem văn bản được nhập trong trường message có rỗng hay không.
+    Nếu văn bản không rỗng, tiếp theo, nó tạo ra một dấu thời gian hiện tại bằng cách sử dụng LocalDateTime.
+    now() và định dạng nó bằng mẫu "HH:mm dd-MM-yyyy" sử dụng DateTimeFormatter.
+    Thời gian được định dạng được chuyển đổi thành chuỗi.
+    Nó kiểm tra xem biến userUID có khác null hay không.
+    Nếu receiverId là null, nó gọi chatDetailsViewModel.saveChat()
+    với các tham số cần thiết để lưu tin nhắn cho người dùng được chỉ định bởi userUID,
+    người nhận được chỉ định bởi intentReceiverId, và các chi tiết khác như văn bản tin nhắn,
+     thời gian được định dạng,URL hình ảnh đội và tên đội.
+    Nếu receiverId khác null, nó gọi chatDetailsViewModel.saveChat()
+    với các tham số cần thiết tương tự như trường hợp trước nhưng sử dụng receiverId thay vì intentReceiverId.
+
+ */
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun sendChat() {
@@ -186,7 +190,7 @@ class ChatDetailsActivity : AppCompatActivity() {
         val name = intent?.getStringExtra("teamName")
         val userUid = intent?.getStringExtra("userUid")
         if (name.isNullOrEmpty()) {
-            activityChatDetailsBinding.teamName.text = thisTeamName
+             activityChatDetailsBinding.teamName.text = thisTeamName
         } else {
             activityChatDetailsBinding.teamName.text = name
             intentReceiverId = userUid

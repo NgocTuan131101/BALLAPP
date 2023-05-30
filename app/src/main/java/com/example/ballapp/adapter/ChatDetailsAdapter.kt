@@ -57,7 +57,8 @@ class ChatDetailsAdapter @Inject constructor(private var list: ArrayList<ChatMod
         }
     }
 
-    override fun onBindViewHolder(holder:MyViewHolder, position: Int) {
+
+    override fun onBindViewHolder(holder: ChatDetailsAdapter.MyViewHolder, position: Int) {
         val chat = list[position]
         holder.message.text = chat.message
         holder.time.text = chat.time

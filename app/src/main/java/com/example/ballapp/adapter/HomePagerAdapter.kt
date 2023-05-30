@@ -8,7 +8,6 @@ import com.example.ballapp.home.all.AllFragmentMainActivity
 import com.example.ballapp.home.nearme.NearMeFragmentMainActivity
 import com.example.ballapp.home.today.TodayFragmentMainActivity
 import com.example.ballapp.home.tomorrow.TomorrowFragmentMainActivity
-import com.example.ballapp.main.Fragmentmatch.newcreata.NewCreateFragment
 import javax.inject.Inject
 
 class HomePagerAdapter  @Inject constructor(fm : FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fm, lifecycle) {
@@ -25,10 +24,10 @@ class HomePagerAdapter  @Inject constructor(fm : FragmentManager, lifecycle: Lif
                     TodayFragmentMainActivity()
                 }
                 2 ->{
-                    NearMeFragmentMainActivity()
+                    TomorrowFragmentMainActivity()
                 }
                 3 ->{
-                    TomorrowFragmentMainActivity()
+                    NearMeFragmentMainActivity()
                 }
 
                 else -> {

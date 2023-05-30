@@ -249,6 +249,7 @@ class ActivityCreatMatchNew : AppCompatActivity() {
                 is CreatMatchViewModel.SaveRequest.ResultError -> {
 
                 }
+                else -> {}
             }
         }
     }
@@ -337,6 +338,7 @@ class ActivityCreatMatchNew : AppCompatActivity() {
                 }
                 is CreatMatchViewModel.LoadTeamInfo.LoadImageError -> {}
                 is CreatMatchViewModel.LoadTeamInfo.LoadInfoError -> {}
+                else -> {}
             }
         }
 
@@ -432,6 +434,7 @@ class ActivityCreatMatchNew : AppCompatActivity() {
             when (result) {
                 is CreatMatchViewModel.NewCreateResult.ResultOk -> {}
                 is CreatMatchViewModel.NewCreateResult.ResultError -> {}
+                else -> {}
             }
         }
     }
@@ -441,6 +444,7 @@ class ActivityCreatMatchNew : AppCompatActivity() {
             when (result) {
                 is CreatMatchViewModel.NotificationResult.ResultOk -> {}
                 is CreatMatchViewModel.NotificationResult.ResultError -> {}
+                else -> {}
             }
         }
     }

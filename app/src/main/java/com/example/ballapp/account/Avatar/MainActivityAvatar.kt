@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.ballapp.account.Avatar
 
 import android.annotation.SuppressLint

@@ -32,92 +32,85 @@ class AllDetailsViewModel @Inject constructor(private val allDetailsRepository: 
         object ConfirmMatchError : CatchMatch()
     }
     fun handleCatchMatch(
-        uID: String,
-        userUID: String,
-        waitUID: String,
-        matchUID: String,
-        deviceToken: String,
-        teamName: String,
-        teanPhone: String,
-        date: String,
-        time: String,
-        location: String,
-        note: String,
-        teamPeopleNumber: String,
-        teamImageUrl: String,
-        locationAddress: String,
-        lat: Double,
-        long: Double,
-        click: Int,
-        clientTeamName: String,
-        clinentUID: String,
-        clientImageUrl: String,
-        teamWaitUID: String,
-        confirmUID: String,
-        geoHash: String,
-        clientClickNumber: Int,
+        uID: String, userUID : String, waitUID: String, matchID : String, deviceToken : String, teamName: String, teamPhone: String,
+        date : String, time : String, location : String, note : String, teamPeopleNumber: String,
+        teamImageUrl : String, locationAddress : String, lat : Double, long : Double, click : Int,
+        clientTeamName : String, clientUID : String, clientImageUrl: String, teamWaitUID : String, confirmUID: String,
+        geoHash : String, clientClickNumber : Int
     ) {
-        viewModelScope.launch(CoroutineExceptionHandler { _, throwavle ->
-            throwavle.printStackTrace()
+        viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
+            throwable.printStackTrace()
         }) {
-            allDetailsRepository.catchMatch(matchUID, userUID, clinentUID, click, {
+            allDetailsRepository.catchMatch(matchID, userUID, clientUID, click, {
                 catchMatch.value = CatchMatch.ResultOK
             }, {
                 catchMatch.value = CatchMatch.ResultError
             })
         }
+
         viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
             throwable.printStackTrace()
         }) {
-            allDetailsRepository.waitMatch(uID,
-                userUID,
-                matchUID,
-                deviceToken,
-                teamName,
-                teanPhone,
-                date,
-                time,
-                location,
-                note,
-                teamPeopleNumber,
-                teamImageUrl,
-                locationAddress,
-                lat,
-                long,
-                click,
-                clientTeamName,
-                clientImageUrl,
-                confirmUID,
-                geoHash,
-                clientClickNumber,
-                {
+            allDetailsRepository.waitMatch(uID, userUID, matchID, deviceToken, teamName, teamPhone, date, time, location,
+                note, teamPeopleNumber, teamImageUrl, locationAddress, lat, long, click, clientTeamName, clientImageUrl,
+                confirmUID, geoHash, clientClickNumber, {
                     catchMatch.value = CatchMatch.WaitMatchOK
-                },
-                {
+                }, {
                     catchMatch.value = CatchMatch.WaitMatchError
                 })
         }
-    }
-    fun waiMatchListNotification(
-        clinentUID: String,
-        clientTeamName: String,
-        clientImageUrl: String,
-        id:String,
-        date:String,
-        time:String,
-        timeUtils: Long
-    ){
-        viewModelScope.launch(CoroutineExceptionHandler{_,throwable ->
+
+        viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
             throwable.printStackTrace()
-        }){
-            allDetailsRepository.waitMatchListNotification(clinentUID,clientTeamName,clientImageUrl,id,date,time,timeUtils,{
-                waitMatchListNotification.value = WaitMatchListNotificationResult.ResultOk
-            },{
-                waitMatchListNotification.value = WaitMatchListNotificationResult.ResultError
+        }) {
+            allDetailsRepository.waitMatchNotification(userUID, matchID, date, time, clientTeamName, {
+                catchMatch.value = CatchMatch.WaitMatchNotificationOk
+            }, {
+                catchMatch.value = CatchMatch.WaitMatchErrorNotificationError
             })
         }
 
+        viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
+            throwable.printStackTrace()
+        }) {
+            allDetailsRepository.confirmMatch(waitUID, matchID, deviceToken, teamName, teamPhone, date,
+                time, location, note, teamPeopleNumber, teamImageUrl, locationAddress, lat, long, click,
+                clientTeamName, clientImageUrl, teamWaitUID, clientUID, geoHash, {
+                    catchMatch.value = CatchMatch.ConfirmMatchOk
+                }, {
+                    catchMatch.value = CatchMatch.ConfirmMatchError
+                })
+        }
     }
 
 
-}
+    fun waiMatchListNotification(
+            clinentUID: String,
+            clientTeamName: String,
+            clientImageUrl: String,
+            id: String,
+            date: String,
+            time: String,
+            timeUtils: Long
+        ) {
+            viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
+                throwable.printStackTrace()
+            }) {
+                allDetailsRepository.waitMatchListNotification(
+                    clinentUID,
+                    clientTeamName,
+                    clientImageUrl,
+                    id,
+                    date,
+                    time,
+                    timeUtils,
+                    {
+                        waitMatchListNotification.value = WaitMatchListNotificationResult.ResultOk
+                    },
+                    {
+                        waitMatchListNotification.value =
+                            WaitMatchListNotificationResult.ResultError
+                    })
+            }
+        }
+    }

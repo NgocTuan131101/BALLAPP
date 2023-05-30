@@ -40,6 +40,7 @@
             android:elevation="12dp"
             android:id="@+id/line"
             android:layout_below="@id/team_name_layout"
+            android:layout_toEndOf="@+id/user_avatar"
             android:layout_marginTop="12dp"
             android:background="#EAEAEA"/>
     </RelativeLayout>
